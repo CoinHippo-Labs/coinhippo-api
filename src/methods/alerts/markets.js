@@ -323,7 +323,7 @@ module.exports = async () => {
     alerted = true;
   }
   if (telegram_messages.length > 0) {
-    await telegram(telegram_messages, true);
+    await telegram(telegram_messages);
     alerted = true;
   }
 

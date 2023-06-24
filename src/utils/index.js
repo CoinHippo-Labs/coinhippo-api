@@ -79,6 +79,30 @@ const removeDecimal = number => {
   return '';
 };
 
+const toDecimal = n => {
+  const sign = Math.sign(n);
+  if (/\d+\.?\d*e[\+\-]*\d+/i.test(n)) {
+    const zero = '0';
+    const parts = String(n).toLowerCase().split('e');
+    const e = parts.pop();
+    let l = Math.abs(e);
+    const direction = e / l;
+    const coeff_array = parts[0].split('.');
+    if (direction === -1) {
+      coeff_array[0] = Math.abs(coeff_array[0]);
+      n = `${zero}.${new Array(l).join(zero)}${coeff_array.join('')}`;
+    }
+    else {
+      const dec = coeff_array[1];
+      if (dec) {
+        l = l - dec.length;
+      }
+      n = `${coeff_array.join('')}${new Array(l + 1).join(zero)}`;
+    }
+  }
+  return sign < 0 ? -n : n;
+};
+
 const numberFormat = (number, format, is_exact) => {
   if (number === Infinity) {
     return number.toString();
@@ -86,31 +110,6 @@ const numberFormat = (number, format, is_exact) => {
   let formatted_number = numeral(number).format(format.includes('.000') && Math.abs(Number(number)) >= 1.01 ? format.substring(0, format.indexOf('.') + (is_exact ? 7 : 3)) : format === '0,0' && Number(number) < 1 ? '0,0.00' : format);
   if (['NaN', 'e+', 'e-', 't'].findIndex(s => formatted_number.includes(s)) > -1) {
     formatted_number = number.toString();
-
-    const toDecimal = n => {
-      const sign = Math.sign(n);
-      if (/\d+\.?\d*e[\+\-]*\d+/i.test(n)) {
-        const zero = '0';
-        const parts = String(n).toLowerCase().split('e');
-        const e = parts.pop();
-        let l = Math.abs(e);
-        const direction = e / l;
-        const coeff_array = parts[0].split('.');
-        if (direction === -1) {
-          coeff_array[0] = Math.abs(coeff_array[0]);
-          n = `${zero}.${new Array(l).join(zero)}${coeff_array.join('')}`;
-        }
-        else {
-          const dec = coeff_array[1];
-          if (dec) {
-            l = l - dec.length;
-          }
-          n = `${coeff_array.join('')}${new Array(l + 1).join(zero)}`;
-        }
-      }
-      return sign < 0 ? -n : n;
-    }
-
     if (formatted_number.includes('e-')) {
       formatted_number = toDecimal(number);
     }
@@ -131,10 +130,9 @@ const numberFormat = (number, format, is_exact) => {
       return numeral(number).format(`0,0${number < 1 ? '.00' : ''}a`);
     }
   }
-  else if (typeof number === 'number' && !format?.includes('a') && Number(split(formatted_number).join('')).toString() !== removeDecimal(split(formatted_number).join(''))) {
+  else if (typeof number === 'number' && ['a', '+'].findIndex(c => format.includes(c)) < 0 && Number(split(formatted_number).join('')).toString() !== removeDecimal(split(formatted_number).join(''))) {
     formatted_number = number.toString();
   }
-
   let string = removeDecimal(formatted_number) || '';
   if (string.toLowerCase().endsWith('t') && split(string).length > 1) {
     string = numeral(number).format('0,0e+0');
