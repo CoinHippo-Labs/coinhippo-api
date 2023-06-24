@@ -1,0 +1,140 @@
+#################
+# Configuration #
+#################
+
+chains:
+  evm:
+    ethereum:
+      chain_id: 1
+      endpoints:
+        rpc:
+          - "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+          - "https://eth-mainnet.public.blastapi.io"
+          - "https://1rpc.io/eth"
+          - "https://rpc.ankr.com/eth"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Ethereum"
+      short_name: "ETH"
+      image: "/logos/chains/ethereum.svg"
+      color: "#c0c2c3"
+      explorer:
+        name: "Etherscan"
+        url: "https://etherscan.io"
+        icon: "/logos/explorers/etherscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        contract_0_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
+    binance:
+      chain_id: 56
+      endpoints:
+        rpc:
+          - "https://bsc-dataseed.binance.org"
+          - "https://bsc-dataseed1.ninicoin.io"
+          - "https://bsc-dataseed1.defibit.io"
+          - "https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3"
+          - "https://bsc-mainnet.public.blastapi.io"
+          - "https://1rpc.io/bnb"
+          - "https://bscrpc.com"
+          - "https://rpc.ankr.com/bsc"
+      native_token:
+        name: "BNB"
+        symbol: "BNB"
+        decimals: 18
+      name: "BNB Chain"
+      short_name: "BNB"
+      image: "/logos/chains/binance.png"
+      color: "#e8b30b"
+      explorer:
+        name: "BscScan"
+        url: "https://bscscan.com"
+        icon: "/logos/explorers/bscscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        contract_0_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
+    polygon:
+      chain_id: 137
+      endpoints:
+        rpc:
+          - "https://polygon-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+          - "https://matic-mainnet.chainstacklabs.com"
+          - "https://poly-rpc.gateway.pokt.network"
+          - "https://polygon.blockpi.network/v1/rpc/public"
+          - "https://polygon-mainnet.public.blastapi.io"
+          - "https://1rpc.io/matic"
+          - "https://rpc.ankr.com/polygon"
+      native_token:
+        name: "Polygon"
+        symbol: "MATIC"
+        decimals: 18
+      name: "Polygon"
+      short_name: "POLYGON"
+      image: "/logos/chains/polygon.svg"
+      color: "#8247e5"
+      explorer:
+        name: "Polygonscan"
+        url: "https://polygonscan.com"
+        icon: "/logos/explorers/polygonscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        contract_0_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
+    arbitrum:
+      chain_id: 42161
+      endpoints:
+        rpc:
+          - "https://arbitrum-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+          - "https://arbitrum.blockpi.network/v1/rpc/public"
+          - "https://arb1.arbitrum.io/rpc"
+          - "https://1rpc.io/arb"
+          - "https://rpc.ankr.com/arbitrum"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Arbitrum"
+      short_name: "ARB"
+      image: "/logos/chains/arbitrum.svg"
+      color: "#28a0f0"
+      explorer:
+        name: "Arbiscan"
+        url: "https://arbiscan.io"
+        icon: "/logos/explorers/arbiscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        contract_0_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
+    optimism:
+      chain_id: 10
+      endpoints:
+        rpc:
+          - "https://optimism-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+          - "https://optimism.blockpi.network/v1/rpc/public"
+          - "https://optimism-mainnet.public.blastapi.io"
+          - "https://1rpc.io/op"
+          - "https://rpc.ankr.com/optimism"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Optimism"
+      short_name: "OP"
+      image: "/logos/chains/optimism.svg"
+      color: "#dc2626"
+      explorer:
+        name: "Etherscan"
+        url: "https://optimistic.etherscan.io"
+        icon: "/logos/explorers/optimism.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        contract_0_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"

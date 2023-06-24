@@ -1,0 +1,69 @@
+variable "aws_region" {
+  description = "AWS region"
+  default     = "us-east-1"
+}
+
+variable "aws_profile" {
+  description = "AWS profile"
+  default     = "default"
+}
+
+variable "package_name" {
+  description = "Package name"
+  default     = "coinhippo"
+}
+
+variable "indexer_username" {
+  description = "Indexer username"
+  default     = ""
+}
+
+variable "indexer_password" {
+  description = "Indexer password"
+  default     = ""
+}
+
+variable "news_key" {
+  description = "News API key"
+  default     = ""
+}
+
+variable "whale_alert_key" {
+  description = "Whale alert API key"
+  default     = ""
+}
+
+variable "twitter_key" {
+  description = "Twitter API key"
+  default     = ""
+}
+
+variable "twitter_secret" {
+  description = "Twitter API secret"
+  default     = ""
+}
+
+variable "twitter_access_token" {
+  description = "Twitter API access token"
+  default     = ""
+}
+
+variable "twitter_access_token_secret" {
+  description = "Twitter API access token secret"
+  default     = ""
+}
+
+variable "telegram_key" {
+  description = "Telegram API key"
+  default     = ""
+}
+
+variable "telegram_channel" {
+  description = "Telegram channel"
+  default     = ""
+}
+
+variable "api_gateway_integration_id" {
+  description = "API gateway integration id"
+  default     = ""
+}
