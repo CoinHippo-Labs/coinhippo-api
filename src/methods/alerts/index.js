@@ -14,8 +14,8 @@ module.exports = async () => {
 
   let alerted = await listing() || await news();
   alerted = alerted || (hour % 12 === 0 && minute === 5 && await fearAndGreed());
-  alerted = alerted || (minute % 7 === 0 && await whale());
-  alerted = alerted || (minute % 30 === 0 && await gas());
+  alerted = alerted || (minute % 4 === 0 && await whale());
+  alerted = alerted || (hour % 2 === 0 && minute % 0 === 0 && await gas());
   alerted = alerted || (minute % 15 === 0 && await markets());
   return alerted;
 };

@@ -4,7 +4,7 @@ const { twitter, telegram } = require('../broadcasts');
 const { getProvider } = require('../../utils/chain/evm');
 const { numberFormat } = require('../../utils');
 
-const THRESHOLD = 15;
+const THRESHOLD = 12;
 
 module.exports = async () => {
   let alerted;
