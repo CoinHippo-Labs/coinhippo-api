@@ -89,7 +89,7 @@ module.exports = async () => {
   let alerted;
 
   const now = moment();
-  const response = await whaleAlert({ start: moment(now).subtract(3, 'minute').unix(), end: moment(now).unix() });
+  const response = await whaleAlert({ start: moment(now).subtract(3, 'minutes').unix(), end: moment(now).unix() });
   let data = toArray(response?.transactions);
 
   data = _.orderBy(
@@ -137,7 +137,7 @@ module.exports = async () => {
   })
   .filter(d => {
     const { v, amount_usd, transaction_type, symbol, from_address_name, to_address_name, is_donation, is_hacked } = { ...d };
-    return v && amount_usd >= (transaction_type !== 'transfer' ? 2.5 : is_donation || is_hacked ? 0.5 : 7.5) * (equalsIgnoreCase(from_address_name, to_address_name) && HUGE_SYMBOLS.indexOf(symbol) > -1 ? 2.5 : 1) * MIN_AMOUNT;
+    return v && amount_usd >= (transaction_type !== 'transfer' ? 1.5 : is_donation || is_hacked ? 0.25 : 3) * (equalsIgnoreCase(from_address_name, to_address_name) && HUGE_SYMBOLS.indexOf(symbol) > -1 ? 1.5 : 1) * MIN_AMOUNT;
   })
   .map(d => {
     const { k } = { ...d };
@@ -191,7 +191,7 @@ module.exports = async () => {
       _.slice(
         data.filter(d => {
           const { symbol, amount_usd, transaction_type, from_address_name, to_address_name, is_donation, is_hacked } = { ...d };
-          return amount_usd >= (transaction_type !== 'transfer' ? 4 : is_donation || is_hacked ? 0.5 : 5) * (equalsIgnoreCase(from_address_name, to_address_name) && HUGE_SYMBOLS.indexOf(symbol) > -1 ? 3 : 1) * MIN_AMOUNT;
+          return amount_usd >= (transaction_type !== 'transfer' ? 2 : is_donation || is_hacked ? 0.4 : 5) * (equalsIgnoreCase(from_address_name, to_address_name) && HUGE_SYMBOLS.indexOf(symbol) > -1 ? 2 : 1) * MIN_AMOUNT;
         }),
         0, 3,
       ),

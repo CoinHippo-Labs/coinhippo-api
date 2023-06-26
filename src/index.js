@@ -1,7 +1,7 @@
 exports.handler = async (event, context, callback) => {
   const moment = require('moment');
 
-  const { getCoingecko, getFearAndGreed } = require('./methods');
+  const { getCoingecko, getFearAndGreed, archive, alerts } = require('./methods');
   const { getChainsList } = require('./utils/config');
   const { getParams, errorOutput, finalizeOutput } = require('./utils/io');
 
@@ -50,7 +50,8 @@ exports.handler = async (event, context, callback) => {
     default:
       if (!req.url) {
         try {
-          output = await require('./methods/alerts')();
+          await archive();
+          output = await alerts();
         } catch (error) {
           output = errorOutput(error);
         }
