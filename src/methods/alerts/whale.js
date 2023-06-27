@@ -209,7 +209,7 @@ module.exports = async () => {
       alerted = true;
     }
     if (telegram_message) {
-      await telegram(telegram_message);
+      await telegram([telegram_message]);
       alerted = true;
     }
   }

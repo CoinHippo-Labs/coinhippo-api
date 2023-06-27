@@ -17,8 +17,8 @@ module.exports = async () => {
   if (value) {
     const twitter_message = `🌦 Today's #Bitcoin Fear & Greed Index is ${numberFormat(value, '0,0')} - ${value_classification}${value <= LOW ? ' 🥶' : value >= HIGH ? ' 🤩' : ''}\n\n#Cryptocurrency`;
     const telegram_message = `🌦 Today's Bitcoin Fear & Greed Index is <pre>${numberFormat(value, '0,0')}</pre> - <u>${value_classification}</u>${value <= LOW ? ' 🥶' : value >= HIGH ? ' 🤩' : ''}`;
-    await twitter(twitter_message);
-    await telegram(telegram_message);
+    await twitter([twitter_message]);
+    await telegram([telegram_message]);
     alerted = true;
   }
   return alerted;
