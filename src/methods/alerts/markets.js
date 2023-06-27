@@ -119,8 +119,8 @@ module.exports = async () => {
             telegram_message = `${telegram_message}<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <pre>$${numberFormat(value, '0,0.00000000')}</pre>`;
           }
         });
-        twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : ''}`}`;
-        twitter_message = `${twitter_message}\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')} #Cryptocurrency`}`;
+        twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : ''}`;
+        twitter_message = `${twitter_message}\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')} #Cryptocurrency`;
         twitter_messages.push(twitter_message);
         telegram_messages.push(telegram_message);
       }
@@ -136,7 +136,7 @@ module.exports = async () => {
             telegram_message = `${telegram_message}<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <pre>$${numberFormat(value, '0,0.00000000')}</pre>`;
           }
         });
-        twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : ''}`}`;
+        twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : ''}`;
         twitter_message = `${twitter_message}\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')} #Cryptocurrency`;
         twitter_messages.push(twitter_message);
         telegram_messages.push(telegram_message);
