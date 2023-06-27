@@ -184,8 +184,8 @@ module.exports = async () => {
     let telegram_message = '';
     _.orderBy(_.slice(data, 0, 5), ['timestamp'], ['asc']).forEach((d, i) => {
       const { symbol, amount, amount_usd, url, transaction_type, from_address_name, to_address_name, is_donation, is_hacked } = { ...d };
-      telegram_message += `${i === 0 ? '' : '\n\n'}`;
-      telegram_message += `<a href="${url}">${repeatEmoji(d)} ${transaction_type ? getTitle(is_donation ? 'donation' : is_hacked ? 'stolen funds' : transaction_type) : 'transaction'}</a> <b>${numberFormat(amount, '0,0')} ${symbol.toUpperCase()}</b> <pre>$${numberFormat(amount_usd, '0,0')}</pre>\n${transaction_type === 'mint' ? `at ${to_address_name}` : transaction_type === 'burn' ? `at ${from_address_name}` : transaction_type === 'lock' ? `at ${to_address_name}` : transaction_type === 'unlock' ? `at ${to_address_name}` : `${from_address_name.replace('Unknown ', '❔')} ➡️ ${to_address_name.replace('Unknown ', '❔')}`}`;
+      telegram_message = `${telegram_message}${i === 0 ? '' : '\n\n'}`;
+      telegram_message = `${telegram_message}<a href="${url}">${repeatEmoji(d)} ${transaction_type ? getTitle(is_donation ? 'donation' : is_hacked ? 'stolen funds' : transaction_type) : 'transaction'}</a> <b>${numberFormat(amount, '0,0')} ${symbol.toUpperCase()}</b> <pre>$${numberFormat(amount_usd, '0,0')}</pre>\n${transaction_type === 'mint' ? `at ${to_address_name}` : transaction_type === 'burn' ? `at ${from_address_name}` : transaction_type === 'lock' ? `at ${to_address_name}` : transaction_type === 'unlock' ? `at ${to_address_name}` : `${from_address_name.replace('Unknown ', '❔')} ➡️ ${to_address_name.replace('Unknown ', '❔')}`}`;
     });
     data = _.orderBy(
       _.slice(
@@ -199,11 +199,11 @@ module.exports = async () => {
     );
     data.forEach((d, i) => {
       const { symbol, amount, amount_usd, url, transaction_type, from_address_name, to_address_name, is_donation, is_hacked } = { ...d };
-      twitter_message += `${i === 0 ? `Recent whale${data.length > 1 ? `s'` : `'s`} activit${data.length > 1 ? 'ies' : 'y'} you should be notified.` : ''}\n`;
-      twitter_message += `${i > 0 ? '\n' : ''}- ${repeatEmoji(d)} ${transaction_type ? getTitle(is_donation ? 'donation' : is_hacked ? 'stolen funds' : transaction_type) : 'transaction'} ${numberFormat(amount, '0,0')} ${symbol.toUpperCase()} ($${numberFormat(amount_usd, '0,0')})\n${transaction_type === 'mint' ? `at ${to_address_name}` : transaction_type === 'burn' ? `at ${from_address_name}` : transaction_type === 'lock' ? `at ${to_address_name}` : transaction_type === 'unlock' ? `at ${to_address_name}` : `${from_address_name.replace('Unknown ', '❔')} ➡️ ${to_address_name.replace('Unknown ', '❔')}`}`;
-      twitter_message += data.length < 3 ? `\n${url}` : '';
+      twitter_message = `${twitter_message}${i === 0 ? `Recent whale${data.length > 1 ? `s'` : `'s`} activit${data.length > 1 ? 'ies' : 'y'} you should be notified.` : ''}\n`;
+      twitter_message = `${twitter_message}${i > 0 ? '\n' : ''}- ${repeatEmoji(d)} ${transaction_type ? getTitle(is_donation ? 'donation' : is_hacked ? 'stolen funds' : transaction_type) : 'transaction'} ${numberFormat(amount, '0,0')} ${symbol.toUpperCase()} ($${numberFormat(amount_usd, '0,0')})\n${transaction_type === 'mint' ? `at ${to_address_name}` : transaction_type === 'burn' ? `at ${from_address_name}` : transaction_type === 'lock' ? `at ${to_address_name}` : transaction_type === 'unlock' ? `at ${to_address_name}` : `${from_address_name.replace('Unknown ', '❔')} ➡️ ${to_address_name.replace('Unknown ', '❔')}`}`;
+      twitter_message = `${twitter_message}${data.length < 3 ? `\n${url}` : ''}`;
     });
-    twitter_message += data.length > 2 ? '' : `\n\n${_.uniq(toArray(_.concat(data.map(d => `${d.blockchain ? `#${getTitle(d.blockchain)}` : ''}`), data.flatMap(d => [[' ', 'unknown'].findIndex(s => d.from_address_name.toLoweCase().includes(s)) < 0 && `#${getTitle(d.from_address_name)}`, [' ', 'unknown'].findIndex(s => d.to_address_name.toLoweCase().includes(s)) < 0 && `#${getTitle(d.to_address_name)}`])))).join(' ')} #WhaleAlert`;
+    twitter_message = `${twitter_message}${data.length > 2 ? '' : `\n\n${_.uniq(toArray(_.concat(data.map(d => `${d.blockchain ? `#${getTitle(d.blockchain)}` : ''}`), data.flatMap(d => [[' ', 'unknown'].findIndex(s => d.from_address_name.toLoweCase().includes(s)) < 0 && `#${getTitle(d.from_address_name)}`, [' ', 'unknown'].findIndex(s => d.to_address_name.toLoweCase().includes(s)) < 0 && `#${getTitle(d.to_address_name)}`])))).join(' ')} #WhaleAlert`}`;
     if (twitter_message) {
       await twitter(twitter_message);
       alerted = true;

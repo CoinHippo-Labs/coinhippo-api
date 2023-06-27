@@ -114,13 +114,13 @@ module.exports = async () => {
         data.forEach((d, i) => {
           const { id, symbol, value } = { ...d };
           if (id && symbol) {
-            twitter_message += `${i > 0 ? '\n' : ''}$${symbol.toUpperCase()} hits a new ATH at $${numberFormat(value, '0,0.00000000')}. 🚀🌙`;
-            telegram_message += `${i === 0 ? '🛸🌙 ALL TIME HIGH' : ''}\n`;
-            telegram_message += `<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <pre>$${numberFormat(value, '0,0.00000000')}</pre>`;
+            twitter_message = `${twitter_message}${i > 0 ? '\n' : ''}$${symbol.toUpperCase()} hits a new ATH at $${numberFormat(value, '0,0.00000000')}. 🚀🌙`;
+            telegram_message = `${telegram_message}${i === 0 ? '🛸🌙 ALL TIME HIGH' : ''}\n`;
+            telegram_message = `${telegram_message}<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <pre>$${numberFormat(value, '0,0.00000000')}</pre>`;
           }
         });
-        twitter_message += data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : '';
-        twitter_message += `\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')} #Cryptocurrency`;
+        twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : ''}`}`;
+        twitter_message = `${twitter_message}\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')} #Cryptocurrency`;
         twitter_messages.push(twitter_message);
         telegram_messages.push(telegram_message);
       }
@@ -131,13 +131,13 @@ module.exports = async () => {
         data.forEach((d, i) => {
           const { id, symbol, value } = { ...d };
           if (id && symbol) {
-            twitter_message += `${i > 0 ? '\n' : ''}$${symbol.toUpperCase()} made a new ATL at $${numberFormat(value, '0,0.00000000')}. 😢🚨`;
-            telegram_message += `${i === 0 ? '🧸 ALL TIME LOW' : ''}\n`;
-            telegram_message += `<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <pre>$${numberFormat(value, '0,0.00000000')}</pre>`;
+            twitter_message = `${twitter_message}${i > 0 ? '\n' : ''}$${symbol.toUpperCase()} made a new ATL at $${numberFormat(value, '0,0.00000000')}. 😢🚨`;
+            telegram_message = `${telegram_message}${i === 0 ? '🧸 ALL TIME LOW' : ''}\n`;
+            telegram_message = `${telegram_message}<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <pre>$${numberFormat(value, '0,0.00000000')}</pre>`;
           }
         });
-        twitter_message += data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : '';
-        twitter_message += `\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')} #Cryptocurrency`;
+        twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : ''}`}`;
+        twitter_message = `${twitter_message}\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')} #Cryptocurrency`;
         twitter_messages.push(twitter_message);
         telegram_messages.push(telegram_message);
       }
@@ -152,14 +152,14 @@ module.exports = async () => {
           data.forEach((d, i) => {
             const { id, symbol, current_price, price_change_percentage_24h_in_currency } = { ...d };
             if (id && symbol) {
-              twitter_message += `${i === 0 ? `Let's check on the Top${data.length > 1 ? ` ${data.length}` : ''} % Changes 🌪` : ''}\n`;
-              twitter_message += `$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
-              telegram_message += `${i === 0 ? `<a href="${WEBSITE}/tokens">🌪 High % Change</a>` : ''}\n`;
-              telegram_message += `<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
+              twitter_message = `${twitter_message}${i === 0 ? `Let's check on the Top${data.length > 1 ? ` ${data.length}` : ''} % Changes 🌪` : ''}\n`;
+              twitter_message = `${twitter_message}$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
+              telegram_message = `${telegram_message}${i === 0 ? `<a href="${WEBSITE}/tokens">🌪 High % Change</a>` : ''}\n`;
+              telegram_message = `${telegram_message}<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
             }
           });
-          twitter_message += data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`;
-          twitter_message += `\n\n💙 if you HODL any one of them\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
+          twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`}`;
+          twitter_message = `${twitter_message}\n\n💙 if you HODL any one of them\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
           twitter_messages.push(twitter_message);
           telegram_messages.push(telegram_message);
         }
@@ -172,14 +172,14 @@ module.exports = async () => {
           data.forEach((d, i) => {
             const { id, symbol, current_price, price_change_percentage_24h_in_currency, volume_per_market_cap } = { ...d };
             if (id && symbol) {
-              twitter_message += `${i === 0 ? `Let's check on the Top${data.length > 1 ? ` ${data.length}` : ''} Volume / Market Cap 🌊` : ''}\n`;
-              twitter_message += `$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
-              telegram_message += `${i === 0 ? `<a href="${WEBSITE}/tokens">🌊 High Volume / Market Cap</a>` : ''}\n`;
-              telegram_message += `<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>\n<b>Vol/MCap: ${numberFormat(volume_per_market_cap, '0,0.0000')}</b>`;
+              twitter_message = `${twitter_message}${i === 0 ? `Let's check on the Top${data.length > 1 ? ` ${data.length}` : ''} Volume / Market Cap 🌊` : ''}\n`;
+              twitter_message = `${twitter_message}$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
+              telegram_message = `${telegram_message}${i === 0 ? `<a href="${WEBSITE}/tokens">🌊 High Volume / Market Cap</a>` : ''}\n`;
+              telegram_message = `${telegram_message}<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>\n<b>Vol/MCap: ${numberFormat(volume_per_market_cap, '0,0.0000')}</b>`;
             }
           });
-          twitter_message += data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`;
-          twitter_message += `\n\n💙 if you HODL any one of them\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
+          twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`}`;
+          twitter_message = `${twitter_message}\n\n💙 if you HODL any one of them\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
           twitter_messages.push(twitter_message);
           telegram_messages.push(telegram_message);
         }
@@ -192,14 +192,14 @@ module.exports = async () => {
           data.forEach((d, i) => {
             const { id, symbol, current_price, price_change_percentage_24h_in_currency } = { ...d };
             if (id && symbol) {
-              twitter_message += `${i === 0 ? `Today's Top Gainers 🏅` : ''}\n`;
-              twitter_message += `$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
-              telegram_message += `${i === 0 ? `<a href="${WEBSITE}">🥇🥈🥉 Top Gainers</a>` : ''}\n`;
-              telegram_message += `<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
+              twitter_message = `${twitter_message}${i === 0 ? `Today's Top Gainers 🏅` : ''}\n`;
+              twitter_message = `${twitter_message}$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
+              telegram_message = `${telegram_message}${i === 0 ? `<a href="${WEBSITE}">🥇🥈🥉 Top Gainers</a>` : ''}\n`;
+              telegram_message = `${telegram_message}<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
             }
           });
-          twitter_message += data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`;
-          twitter_message += `\n\n💙 if you HODL any one of them\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
+          twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`}`;
+          twitter_message = `${twitter_message}\n\n💙 if you HODL any one of them\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
           twitter_messages.push(twitter_message);
           telegram_messages.push(telegram_message);
         }
@@ -212,14 +212,14 @@ module.exports = async () => {
           data.forEach((d, i) => {
             const { id, symbol, current_price, price_change_percentage_24h_in_currency } = { ...d };
             if (id && symbol) {
-              twitter_message += `${i === 0 ? `Today's Top Losers ⚰️` : ''}\n`;
-              twitter_message += `$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
-              telegram_message += `${i === 0 ? `<a href="${WEBSITE}">⚰️ Top Losers</a>` : ''}\n`;
-              telegram_message += `<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
+              twitter_message = `${twitter_message}${i === 0 ? `Today's Top Losers ⚰️` : ''}\n`;
+              twitter_message = `${twitter_message}$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
+              telegram_message = `${telegram_message}${i === 0 ? `<a href="${WEBSITE}">⚰️ Top Losers</a>` : ''}\n`;
+              telegram_message = `${telegram_message}<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
             }
           });
-          twitter_message += data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`;
-          twitter_message += `\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
+          twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`}`;
+          twitter_message = `${twitter_message}\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
           twitter_messages.push(twitter_message);
           telegram_messages.push(telegram_message);
         }
@@ -232,14 +232,14 @@ module.exports = async () => {
           data.forEach((d, i) => {
             const { id, symbol, current_price, price_change_percentage_24h_in_currency } = { ...d };
             if (id && symbol) {
-              twitter_message += `${i === 0 ? `🌱🌕🦄🥞🍣 Top${data.length > 1 ? ` ${data.length}` : ''} DeFi` : ''}\n`;
-              twitter_message += `$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
-              telegram_message += `${i === 0 ? `<a href="${WEBSITE}/tokens/decentralized-finance-defi">🌱🌕🦄🥞🍣 Top DeFi</a>` : ''}\n`;
-              telegram_message += `<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
+              twitter_message = `${twitter_message}${i === 0 ? `🌱🌕🦄🥞🍣 Top${data.length > 1 ? ` ${data.length}` : ''} DeFi` : ''}\n`;
+              twitter_message = `${twitter_message}$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
+              telegram_message = `${telegram_message}${i === 0 ? `<a href="${WEBSITE}/tokens/decentralized-finance-defi">🌱🌕🦄🥞🍣 Top DeFi</a>` : ''}\n`;
+              telegram_message = `${telegram_message}<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
             }
           });
-          twitter_message += data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`;
-          twitter_message += `\n\n#DeFi ${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
+          twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`}`;
+          twitter_message = `${twitter_message}\n\n#DeFi ${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
           twitter_messages.push(twitter_message);
           telegram_messages.push(telegram_message);
         }
@@ -252,14 +252,14 @@ module.exports = async () => {
           data.forEach((d, i) => {
             const { id, symbol, current_price, price_change_percentage_24h_in_currency } = { ...d };
             if (id && symbol) {
-              twitter_message += `${i === 0 ? `🎮🏞👻 Update on the Top${data.length > 1 ? ` ${data.length}` : ''} NFTs` : ''}\n`;
-              twitter_message += `$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
-              telegram_message += `${i === 0 ? `<a href="${WEBSITE}/tokens/non-fungible-tokens-nft">🎮🏞👻 Top NFTs</a>` : ''}\n`;
-              telegram_message += `<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
+              twitter_message = `${twitter_message}${i === 0 ? `🎮🏞👻 Update on the Top${data.length > 1 ? ` ${data.length}` : ''} NFTs` : ''}\n`;
+              twitter_message = `${twitter_message}$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
+              telegram_message = `${telegram_message}${i === 0 ? `<a href="${WEBSITE}/tokens/non-fungible-tokens-nft">🎮🏞👻 Top NFTs</a>` : ''}\n`;
+              telegram_message = `${telegram_message}<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
             }
           });
-          twitter_message += data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`;
-          twitter_message += `\n\n#NFTs ${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
+          twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`}`;
+          twitter_message = `${twitter_message}\n\n#NFTs ${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
           twitter_messages.push(twitter_message);
           telegram_messages.push(telegram_message);
         }
@@ -272,14 +272,14 @@ module.exports = async () => {
           data.forEach((d, i) => {
             const { id, symbol, current_price, price_change_percentage_24h_in_currency } = { ...d };
             if (id && symbol) {
-              twitter_message += `${i === 0 ? `Trending Search. Let's check'em out! 🔥🔥🔥` : ''}\n`;
-              twitter_message += `$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
-              telegram_message += `${i === 0 ? `<a href="${WEBSITE}">🔥🔍🗯 Trending Search</a>` : ''}\n`;
-              telegram_message += `<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
+              twitter_message = `${twitter_message}${i === 0 ? `Trending Search. Let's check'em out! 🔥🔥🔥` : ''}\n`;
+              twitter_message = `${twitter_message}$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
+              telegram_message = `${telegram_message}${i === 0 ? `<a href="${WEBSITE}">🔥🔍🗯 Trending Search</a>` : ''}\n`;
+              telegram_message = `${telegram_message}<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
             }
           });
-          twitter_message += data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`;
-          twitter_message += `\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
+          twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`}`;
+          twitter_message = `${twitter_message}\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')}`;
           twitter_messages.push(twitter_message);
           telegram_messages.push(telegram_message);
         }
@@ -305,14 +305,14 @@ module.exports = async () => {
         data.forEach((d, i) => {
           const { id, symbol, current_price, price_change_percentage_24h_in_currency } = { ...d };
           if (id && symbol) {
-            twitter_message += `${i === 0 ? `${status === 'panic' ? '😱🥶😰 Some Panic selling detected:' : '🤩🤑😁 Some FOMO buying detected:'}` : ''}\n`;
-            twitter_message += `$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
-            telegram_message += `${i === 0 ? `<a href="${WEBSITE}">${status === 'panic' ? '😱🥶😰 Panic Selling' : '🤩🤑😁 FOMO Buying'}</a>` : ''}\n`;
-            telegram_message += `<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
+            twitter_message = `${twitter_message}${i === 0 ? `${status === 'panic' ? '😱🥶😰 Some Panic selling detected:' : '🤩🤑😁 Some FOMO buying detected:'}` : ''}\n`;
+            twitter_message = `${twitter_message}$${symbol.toUpperCase()} $${numberFormat(current_price, '0,0.00000000')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}`;
+            telegram_message = `${telegram_message}${i === 0 ? `<a href="${WEBSITE}">${status === 'panic' ? '😱🥶😰 Panic Selling' : '🤩🤑😁 FOMO Buying'}</a>` : ''}\n`;
+            telegram_message = `${telegram_message}<a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> <b>$${numberFormat(current_price, '0,0.00000000')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`;
           }
         });
-        twitter_message += data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`;
-        twitter_message += `\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')} #Cryptocurrency`;
+        twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : `\n${WEBSITE}/tokens`}`;
+        twitter_message = `${twitter_message}\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')} #Cryptocurrency`;
         twitter_messages.push(twitter_message);
         telegram_messages.push(telegram_message);
       }
