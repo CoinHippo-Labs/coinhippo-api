@@ -103,7 +103,7 @@ module.exports = async () => {
       const { id, symbol, name, current_price, price_change_percentage_24h_in_currency } = { ...market_caps.find(d => d.id === 'bitcoin') };
       if (id && symbol) {
         twitter_messages.push(`Today's 👑🟠 #${name} price is $${numberFormat(current_price, '0,0')} ${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')} from yesterday.\n${WEBSITE}/token/${id}\n\n$${symbol.toUpperCase()} #Cryptocurrency`);
-        telegram_messages.push(`Today's 👑🟠 <a href="${WEBSITE}/token/${id}">${symbol}</a> price <b>$${numberFormat(current_price, '0,0')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`);
+        telegram_messages.push(`Today's 👑🟠 <a href="${WEBSITE}/token/${id}">${symbol.toUpperCase()}</a> price <b>$${numberFormat(current_price, '0,0')}</b> <pre>${numberFormat(price_change_percentage_24h_in_currency / 100, '+0,0.00%')}</pre>`);
       }
     }
     else if (aths.length > 0 || atls.length > 0) {
