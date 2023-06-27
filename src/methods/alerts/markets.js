@@ -120,7 +120,7 @@ module.exports = async () => {
           }
         });
         twitter_message = `${twitter_message}${data.length === 1 ? `\n${WEBSITE}/token/${_.head(data).id}` : ''}`}`;
-        twitter_message = `${twitter_message}\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')} #Cryptocurrency`;
+        twitter_message = `${twitter_message}\n\n${data.map(d => `#${split(d.name, 'normal', ' ').join('')}`).join(' ')} #Cryptocurrency`}`;
         twitter_messages.push(twitter_message);
         telegram_messages.push(telegram_message);
       }
