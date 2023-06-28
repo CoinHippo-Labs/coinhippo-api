@@ -46,8 +46,8 @@ module.exports = async () => {
     }
   }
 
-  const top_gainers = _.orderBy(market_caps, ['price_change_percentage_24h_in_currency'], ['desc']);
-  const top_losers = _.orderBy(market_caps, ['price_change_percentage_24h_in_currency'], ['asc']);
+  const top_gainers = _.orderBy(market_caps.filter(d => d.price_change_percentage_24h_in_currency), ['price_change_percentage_24h_in_currency'], ['desc']);
+  const top_losers = _.orderBy(market_caps.filter(d => d.price_change_percentage_24h_in_currency), ['price_change_percentage_24h_in_currency'], ['asc']);
   const _market_caps = _.orderBy(
     market_caps.filter(d => d.market_cap_rank > 0 && d.market_cap_rank <= 100).map(d => {
       TIMES.forEach(t => {
