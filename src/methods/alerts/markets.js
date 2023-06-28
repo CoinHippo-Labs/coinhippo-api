@@ -7,7 +7,7 @@ const { CURRENCY } = require('../../utils/config');
 const { split, toArray, numberFormat } = require('../../utils');
 
 const WEBSITE = 'https://coinhippo.io';
-const TIMES = ['1h','24h','7d','30d'];
+const TIMES = ['1h', '24h', '7d', '30d'];
 const EXCLUDES = ['tether','usd-coin','binance-usd','dai','frax','true-usd','compound-usd-coin','paxos-standard','neutrino','huobi-btc','usdd','compound-ether','cdai','fei-usd','tether-eurt','flex-usd','alchemix-usd','gemini-dollar','husd','liquity-usd','iron-bank-euro','usdx','nusd','terrausd','seth2','celo-dollar','ageur','compound-basic-attention-token','usdk','musd','celo-euro','seth','instadapp-eth','compound-uniswap','compound-0x','sbtc','compound-chainlink-token','e-money-eur','spiceusd','compound-wrapped-btc','tbtc','seur','veusd','compound-maker','compound-sushi'];
 
 module.exports = async () => {
@@ -144,7 +144,7 @@ module.exports = async () => {
     }
     else {
       const i = Math.floor(Math.random() * 7);
-      if (i < 1) {
+      if (i < 1 && telegram_messages.length < 1) {
         const data = _.slice(_market_caps.filter(d => d.price_change_percentage_24h_in_currency_abs >= 5), 0, 3);
         if (data.length > 0) {
           let twitter_message = '';
@@ -164,7 +164,7 @@ module.exports = async () => {
           telegram_messages.push(telegram_message);
         }
       }
-      else if (i < 2) {
+      if (i < 2 && telegram_messages.length < 1) {
         const data = _.slice(volume_per_market_caps, 0, 3);
         if (data.length > 0) {
           let twitter_message = '';
@@ -184,7 +184,7 @@ module.exports = async () => {
           telegram_messages.push(telegram_message);
         }
       }
-      else if (i < 3) {
+      if (i < 3 && telegram_messages.length < 1) {
         const data = _.slice(top_gainers, 0, 3);
         if (data.length > 0) {
           let twitter_message = '';
@@ -204,7 +204,7 @@ module.exports = async () => {
           telegram_messages.push(telegram_message);
         }
       }
-      else if (i < 4) {
+      if (i < 4 && telegram_messages.length < 1) {
         const data = _.slice(top_losers, 0, 3);
         if (data.length > 0) {
           let twitter_message = '';
@@ -224,7 +224,7 @@ module.exports = async () => {
           telegram_messages.push(telegram_message);
         }
       }
-      else if (i < 5) {
+      if (i < 5 && telegram_messages.length < 1) {
         const data = _.slice(_defis, 0, 3);
         if (data.length > 0) {
           let twitter_message = '';
@@ -244,7 +244,7 @@ module.exports = async () => {
           telegram_messages.push(telegram_message);
         }
       }
-      else if (i < 6) {
+      if (i < 6 && telegram_messages.length < 1) {
         const data = _.slice(_nfts, 0, 3);
         if (data.length > 0) {
           let twitter_message = '';
@@ -264,7 +264,7 @@ module.exports = async () => {
           telegram_messages.push(telegram_message);
         }
       }
-      else {
+      if (telegram_messages.length < 1) {
         const data = _.slice(_trendings, 0, 5);
         if (data.length > 0) {
           let twitter_message = '';
