@@ -15,8 +15,8 @@ module.exports = async () => {
     if (value && value <= THRESHOLD) {
       const twitter_message = `The ⛽ #ETH Gas Price (${numberFormat(value, '0,0')} Gwei) is ${value <= THRESHOLD * 2 / 3 ? 'very low' : 'not high'}.\nMaybe it's time to #DeFi or #NFTs. 😁👍\n\n #EtherGas #Ethereum #Cryptocurrency`;
       const telegram_message = `The ⛽ ETH Gas Price (<pre>${numberFormat(value, '0,0')} Gwei</pre>) is ${value <= THRESHOLD * 2 / 3 ? 'very low' : 'not high'}.\nMaybe it's time to DeFi or NFTs. 😁👍`;
-      await twitter([twitter_message]);
       await telegram([telegram_message]);
+      await twitter([twitter_message]);
       alerted = true;
     }
   } catch (error) {}

@@ -111,12 +111,12 @@ module.exports = async () => {
       });
       await write(CACHE_COLLECTION, id, { latest });
 
-      if (twitter_messages.length > 0) {
-        await twitter(twitter_messages);
-        alerted = true;
-      }
       if (telegram_messages.length > 0) {
         await telegram(telegram_messages, true);
+        alerted = true;
+      }
+      if (twitter_messages.length > 0) {
+        await twitter(twitter_messages);
         alerted = true;
       }
     }

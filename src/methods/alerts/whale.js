@@ -204,12 +204,12 @@ module.exports = async () => {
       twitter_message = `${twitter_message}${data.length < 3 ? `\n${url}` : ''}`;
     });
     twitter_message = `${twitter_message}${data.length > 2 ? '' : `\n\n${_.uniq(toArray(_.concat(data.map(d => `${d.blockchain ? `#${getTitle(d.blockchain)}` : ''}`), data.flatMap(d => [[' ', 'unknown'].findIndex(s => d.from_address_name.toLoweCase().includes(s)) < 0 && `#${getTitle(d.from_address_name)}`, [' ', 'unknown'].findIndex(s => d.to_address_name.toLoweCase().includes(s)) < 0 && `#${getTitle(d.to_address_name)}`])))).join(' ')} #WhaleAlert`}`;
-    if (twitter_message) {
-      await twitter(twitter_message);
-      alerted = true;
-    }
     if (telegram_message) {
       await telegram([telegram_message]);
+      alerted = true;
+    }
+    if (twitter_message) {
+      await twitter(twitter_message);
       alerted = true;
     }
   }

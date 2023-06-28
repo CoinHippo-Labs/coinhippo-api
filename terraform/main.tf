@@ -106,7 +106,7 @@ resource "aws_lambda_function" "function" {
   role             = aws_iam_role.role.arn
   handler          = "index.handler"
   runtime          = "nodejs14.x"
-  timeout          = 120
+  timeout          = 300
   memory_size      = 512
   environment {
     variables = {

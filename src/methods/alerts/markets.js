@@ -4,7 +4,7 @@ const moment = require('moment');
 const { getCoingecko } = require('../coingecko');
 const { twitter, telegram } = require('../broadcasts');
 const { CURRENCY } = require('../../utils/config');
-const { split, toArray, numberFormat } = require('../../utils');
+const { sleep, split, toArray, numberFormat } = require('../../utils');
 
 const WEBSITE = 'https://coinhippo.io';
 const TIMES = ['1h', '24h', '7d', '30d'];
@@ -19,16 +19,20 @@ module.exports = async () => {
 
   let response = await getCoingecko({ path: '/coins/markets', vs_currency: CURRENCY, order: 'market_cap_desc', per_page: 250, price_change_percentage: TIMES.join(',') });
   const market_caps = toArray(response).filter(d => !EXCLUDES.includes(d.id));
+  await sleep(30 * 1000);
 
   response = await getCoingecko({ path: '/coins/markets', category: 'decentralized-finance-defi', vs_currency: CURRENCY, order: 'market_cap_desc', per_page: 250, price_change_percentage: TIMES.join(',') });
   const defis = toArray(response).filter(d => !EXCLUDES.includes(d.id));
+  await sleep(30 * 1000);
 
   response = await getCoingecko({ path: '/coins/markets', category: 'non-fungible-tokens-nft', vs_currency: CURRENCY, order: 'market_cap_desc', per_page: 250, price_change_percentage: TIMES.join(',') });
   const nfts = toArray(response).filter(d => !EXCLUDES.includes(d.id));
+  await sleep(30 * 1000);
 
   response = await getCoingecko({ path: '/search/trending' });
   let trendings = toArray(toArray(response?.coins).map(d => d.item));
   if (trendings.length > 0) {
+    await sleep(30 * 1000);
     response = await getCoingecko({ path: '/coins/markets', ids: trendings.map(d => d.id).join(','), vs_currency: CURRENCY, order: 'market_cap_desc', per_page: 250, price_change_percentage: TIMES.join(',') });
     if (response) {
       trendings = toArray(response).map((d, i) => {
@@ -318,12 +322,12 @@ module.exports = async () => {
       }
     }
   }
-  if (twitter_messages.length > 0) {
-    await twitter(twitter_messages);
-    alerted = true;
-  }
   if (telegram_messages.length > 0) {
     await telegram(telegram_messages);
+    alerted = true;
+  }
+  if (twitter_messages.length > 0) {
+    await twitter(twitter_messages);
     alerted = true;
   }
 
