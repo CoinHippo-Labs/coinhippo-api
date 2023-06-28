@@ -13,8 +13,8 @@ module.exports = async () => {
   const minute = Number(now.minutes());
 
   let alerted = await listing() || await news();
-  alerted = alerted || (hour % 12 === 0 && minute === 5 && await fearAndGreed());
-  alerted = alerted || (minute % 3 === 0 && await whale());
+  alerted = alerted || (hour % 12 === 0 && minute === 4 && await fearAndGreed());
+  alerted = alerted || (minute % 4 === 0 && await whale());
   alerted = alerted || (hour % 2 === 0 && minute === 0 && await gas());
   alerted = alerted || (minute % 15 === 0 && await markets());
   return alerted;

@@ -58,7 +58,7 @@ resource "aws_opensearch_domain" "domain" {
   ebs_options {
     ebs_enabled = true
     volume_type = "gp2"
-    volume_size = 12
+    volume_size = 10
   }
   encrypt_at_rest {
     enabled = true
@@ -107,7 +107,7 @@ resource "aws_lambda_function" "function" {
   handler          = "index.handler"
   runtime          = "nodejs14.x"
   timeout          = 300
-  memory_size      = 512
+  memory_size      = 256
   environment {
     variables = {
       NODE_NO_WARNINGS            = 1
@@ -147,7 +147,7 @@ resource "aws_apigatewayv2_route" "route" {
 
 resource "aws_cloudwatch_event_rule" "schedule" {
   name                = "${var.package_name}-rule"
-  schedule_expression = "cron(*/1 * * * ? *)"
+  schedule_expression = "cron(*/4 * * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "target" {
