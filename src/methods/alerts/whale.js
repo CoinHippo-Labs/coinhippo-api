@@ -26,7 +26,8 @@ const repeatEmoji = d => {
       break;
     case 'unlock':
       emoji = '🔓';
-    case '':
+      break;
+    default:
       if (is_donation) {
         emoji = '🎁';
       }
