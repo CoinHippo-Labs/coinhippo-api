@@ -21,11 +21,11 @@
   "dependencies": {
     "axios": "^1.4.0",
     "config-yml": "^0.10.3",
-    "ethers": "^6.6.0",
+    "ethers": "^6.6.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "node-html-parser": "^6.1.5",
     "numeral": "2.0.6",
-    "twitter-api-client": "^1.6.1"
+    "twitter-api-v2": "^1.15.0"
   }
 }
