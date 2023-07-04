@@ -204,7 +204,9 @@ module.exports = async () => {
       twitter_message = `${twitter_message}${i > 0 ? '\n' : ''}- ${repeatEmoji(d)} ${transaction_type ? getTitle(is_donation ? 'donation' : is_hacked ? 'stolen funds' : transaction_type) : 'transaction'} ${numberFormat(amount, '0,0')} ${symbol.toUpperCase()} ($${numberFormat(amount_usd, '0,0')})\n${transaction_type === 'mint' ? `at ${to_address_name}` : transaction_type === 'burn' ? `at ${from_address_name}` : transaction_type === 'lock' ? `at ${to_address_name}` : transaction_type === 'unlock' ? `at ${to_address_name}` : `${from_address_name.replace('Unknown ', '❔')} ➡️ ${to_address_name.replace('Unknown ', '❔')}`}`;
       twitter_message = `${twitter_message}${data.length < 3 ? `\n${url}` : ''}`;
     });
-    twitter_message = `${twitter_message}${data.length > 2 ? '' : `\n\n${_.uniq(toArray(_.concat(data.map(d => `${d.blockchain ? `#${getTitle(d.blockchain)}` : ''}`), data.flatMap(d => [[' ', 'unknown'].findIndex(s => d.from_address_name.toLoweCase().includes(s)) < 0 && `#${getTitle(d.from_address_name)}`, [' ', 'unknown'].findIndex(s => d.to_address_name.toLoweCase().includes(s)) < 0 && `#${getTitle(d.to_address_name)}`])))).join(' ')} #WhaleAlert`}`;
+    if (twitter_message) {
+      twitter_message = `${twitter_message}${data.length > 2 ? '' : `\n\n${_.uniq(toArray(_.concat(data.map(d => `${d.blockchain ? `#${getTitle(d.blockchain)}` : ''}`), data.flatMap(d => [[' ', 'unknown'].findIndex(s => d.from_address_name.toLoweCase().includes(s)) < 0 && `#${getTitle(d.from_address_name)}`, [' ', 'unknown'].findIndex(s => d.to_address_name.toLoweCase().includes(s)) < 0 && `#${getTitle(d.to_address_name)}`])))).join(' ')} #WhaleAlert`}`;
+    }
     if (telegram_message) {
       await telegram([telegram_message]);
       alerted = true;
