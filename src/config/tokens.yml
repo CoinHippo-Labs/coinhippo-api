@@ -1,0 +1,68 @@
+######################
+# Tokens Information #
+######################
+
+eth:
+  coingecko_id: "ethereum"
+bnb:
+  coingecko_id: "binancecoin"
+matic:
+  coingecko_id: "matic-network"
+avax:
+  coingecko_id: "avalanche-2"
+ftm:
+  coingecko_id: "fantom"
+glmr:
+  coingecko_id: "moonbeam"
+xdai:
+  coingecko_id: "xdai"
+dev:
+  redirect: "glmr"
+oeth:
+  redirect: "eth"
+aeth:
+  redirect: "eth"
+usdc:
+  coingecko_id: "usd-coin"
+  is_stablecoin: true
+  default_price: 1.0
+usdt:
+  coingecko_id: "tether"
+  is_stablecoin: true
+  default_price: 1.0
+dai:
+  coingecko_id: "dai"
+  is_stablecoin: true
+  default_price: 1.0
+kp3r:
+  coingecko_id: "keep3rv1"
+klp:
+  redirect: "eth"
+xoc:
+  coingecko_id: "tether"
+  is_stablecoin: true
+  default_price: 1.0
+alusd:
+  coingecko_id: "alchemix-usd"
+  is_stablecoin: true
+  default_price: 1.0
+aleth:
+  coingecko_id: "alchemix-eth"
+alchemix:
+  coingecko_id: "alchemix"
+radar:
+  coingecko_id: "dappradar"
+zoomer:
+  coingecko_id: "zoomer"
+p8:
+  default_price: 1.0
+btrst:
+  coingecko_id: "braintrust"
+test:
+  is_stablecoin: true
+  default_price: 1.0
+tkn:
+  is_stablecoin: true
+  default_price: 1.0
+ixt:
+  coingecko_id: "ix-token"

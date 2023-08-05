@@ -1,7 +1,7 @@
 exports.handler = async (event, context, callback) => {
   const moment = require('moment');
 
-  const { getCoingecko, getFearAndGreed, archive, alerts } = require('./methods');
+  const { getCoingecko, getTokensPrice, getFearAndGreed, archive, alerts } = require('./methods');
   const { getChainsList } = require('./utils/config');
   const { getParams, errorOutput, finalizeOutput } = require('./utils/io');
 
@@ -29,6 +29,13 @@ exports.handler = async (event, context, callback) => {
         case 'coingecko':
           try {
             output = await getCoingecko(params);
+          } catch (error) {
+            output = errorOutput(error);
+          }
+          break;
+        case 'getTokensPrice':
+          try {
+            output = await getTokensPrice(params);
           } catch (error) {
             output = errorOutput(error);
           }

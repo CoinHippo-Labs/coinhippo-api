@@ -4,7 +4,7 @@ const config = require('config-yml');
 
 const { equalsIgnoreCase, toArray, normalizeQuote } = require('./');
 
-const { chains } = { ...config };
+const { chains, tokens } = { ...config };
 
 const getChains = (chain_types = []) => {
   chain_types = toArray(chain_types);
@@ -65,11 +65,17 @@ const getChainKey = (chain, chain_types = []) => {
 
 const getChainData = (chain, chain_types = []) => chain && getChains(chain_types)[getChainKey(chain, chain_types)];
 
+const getTokens = () => Object.entries({ ...tokens }).map(([k, v]) => { return { id: k, asset_id: k, ...v }; });
+const getToken = id => getTokens().find(d => ['id', 'coingecko_id'].findIndex(k => equalsIgnoreCase(d[k], id)) > -1);
+
 module.exports = {
   CACHE_COLLECTION: 'caches',
+  ASSET_COLLECTION: 'assets',
   CURRENCY: 'usd',
   getChains,
   getChainsList,
   getChainKey,
   getChainData,
+  getTokens,
+  getToken,
 };
