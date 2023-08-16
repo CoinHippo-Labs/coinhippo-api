@@ -212,8 +212,8 @@ module.exports = async () => {
       alerted = true;
     }
     if (twitter_message) {
-      await twitter(twitter_message);
-      alerted = true;
+      // await twitter(twitter_message);
+      // alerted = true;
     }
   }
 
