@@ -42,6 +42,8 @@ xoc:
   coingecko_id: "tether"
   is_stablecoin: true
   default_price: 1.0
+ixt:
+  coingecko_id: "ix-token"
 alusd:
   coingecko_id: "alchemix-usd"
   is_stablecoin: true
@@ -50,19 +52,21 @@ aleth:
   coingecko_id: "alchemix-eth"
 alchemix:
   coingecko_id: "alchemix"
-radar:
-  coingecko_id: "dappradar"
 zoomer:
   coingecko_id: "zoomer"
+radar:
+  coingecko_id: "dappradar"
 p8:
   default_price: 1.0
 btrst:
   coingecko_id: "braintrust"
+xeure:
+  coingecko_id: "monerium-eur-money"
 test:
   is_stablecoin: true
   default_price: 1.0
 tkn:
   is_stablecoin: true
   default_price: 1.0
-ixt:
-  coingecko_id: "ix-token"
+workshoptoken:
+  default_price: 1.0
