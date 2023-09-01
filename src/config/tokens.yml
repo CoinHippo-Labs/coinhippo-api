@@ -22,6 +22,8 @@ oeth:
   redirect: "eth"
 aeth:
   redirect: "eth"
+next:
+  coingecko_id: "connext"
 usdc:
   coingecko_id: "usd-coin"
   is_stablecoin: true
