@@ -64,6 +64,8 @@ btrst:
   coingecko_id: "braintrust"
 xeure:
   coingecko_id: "monerium-eur-money"
+fraction:
+  default_price: 17600
 test:
   is_stablecoin: true
   default_price: 1.0
