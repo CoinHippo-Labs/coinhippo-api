@@ -74,3 +74,5 @@ tkn:
   default_price: 1.0
 workshoptoken:
   default_price: 1.0
+gastly-lp-geth:
+  default_price: 1.0
