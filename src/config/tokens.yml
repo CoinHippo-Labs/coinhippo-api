@@ -70,6 +70,8 @@ grumpycat:
   coingecko_id: "grumpy-cat-2c33af8d-87a8-4154-b004-0686166bdc45"
 planetix:
   coingecko_id: "ix-token"
+aurox:
+  coingecko_id: "urus-token"
 test:
   is_stablecoin: true
   default_price: 1.0
