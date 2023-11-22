@@ -72,6 +72,8 @@ planetix:
   coingecko_id: "ix-token"
 aurox:
   coingecko_id: "urus-token"
+space:
+  coingecko_id: "space-token-bsc"
 test:
   is_stablecoin: true
   default_price: 1.0
