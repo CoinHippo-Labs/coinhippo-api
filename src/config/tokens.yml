@@ -74,6 +74,9 @@ aurox:
   coingecko_id: "urus-token"
 space:
   coingecko_id: "space-token-bsc"
+olit:
+  coingecko_id: "olit"
+  default_price: 1.0
 test:
   is_stablecoin: true
   default_price: 1.0
