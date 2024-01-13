@@ -79,6 +79,8 @@ space:
 olit:
   coingecko_id: "olit"
   default_price: 1.0
+sdai:
+  coingecko_id: "savings-dai"
 test:
   is_stablecoin: true
   default_price: 1.0
