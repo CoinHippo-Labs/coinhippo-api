@@ -18,6 +18,9 @@ xdai:
   coingecko_id: "xdai"
 okb:
   coingecko_id: "okb"
+nura:
+  coingecko_id: "nura"
+  default_price: 0.01
 dev:
   redirect: "glmr"
 oeth:
