@@ -16,6 +16,8 @@ glmr:
   coingecko_id: "moonbeam"
 xdai:
   coingecko_id: "xdai"
+metis:
+  coingecko_id: "metis-token"
 okb:
   coingecko_id: "okb"
 nura:
