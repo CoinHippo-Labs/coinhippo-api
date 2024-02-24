@@ -62,8 +62,3 @@ variable "telegram_channel" {
   description = "Telegram channel"
   default     = ""
 }
-
-variable "api_gateway_integration_id" {
-  description = "API gateway integration id"
-  default     = ""
-}

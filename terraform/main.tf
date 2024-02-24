@@ -2,10 +2,10 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.14"
+      version = "~> 5.31"
     }
   }
-  required_version = ">= 1.0.0"
+  required_version = ">= 1.6.6"
 }
 
 provider "aws" {
@@ -17,8 +17,8 @@ provider "archive" {}
 
 data "archive_file" "zip" {
   type        = "zip"
-  source_dir  = "../src"
-  excludes    = ["yarn.lock"]
+  source_dir  = "../"
+  excludes    = ["terraform", ".gitignore", "README.md", "LICENSE", "yarn.lock"]
   output_path = "${var.package_name}.zip"
 }
 
@@ -47,7 +47,7 @@ resource "aws_iam_policy_attachment" "attachment" {
 
 resource "aws_opensearch_domain" "domain" {
   domain_name    = "${var.package_name}"
-  engine_version = "OpenSearch_2.7"
+  engine_version = "OpenSearch_2.11"
   cluster_config {
     instance_type            = "t3.small.search"
     instance_count           = 1
@@ -105,7 +105,7 @@ resource "aws_lambda_function" "function" {
   source_code_hash = data.archive_file.zip.output_base64sha256
   role             = aws_iam_role.role.arn
   handler          = "index.handler"
-  runtime          = "nodejs14.x"
+  runtime          = "nodejs20.x"
   timeout          = 300
   memory_size      = 256
   environment {
@@ -139,10 +139,26 @@ resource "aws_apigatewayv2_api" "api" {
   target        = aws_lambda_function.function.arn
 }
 
+resource "aws_apigatewayv2_integration" "api" {
+  api_id                 = aws_apigatewayv2_api.api.id
+  connection_type        = "INTERNET"
+  description            = "Lambda Integration - terraform"
+  integration_method     = "POST"
+  integration_uri        = aws_lambda_function.function.invoke_arn
+  integration_type       = "AWS_PROXY"
+  payload_format_version = "2.0"
+}
+
 resource "aws_apigatewayv2_route" "route" {
   api_id    = aws_apigatewayv2_api.api.id
   route_key = "ANY /"
-  target    = "integrations/${var.api_gateway_integration_id}"
+  target    = "integrations/${aws_apigatewayv2_integration.api.id}"
+}
+
+resource "aws_apigatewayv2_route" "route_method" {
+  api_id    = aws_apigatewayv2_api.api.id
+  route_key = "ANY /{method}"
+  target    = "integrations/${aws_apigatewayv2_integration.api.id}"
 }
 
 resource "aws_cloudwatch_event_rule" "schedule" {

@@ -10,9 +10,8 @@
 3. [Install terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 
 ```bash
-cd ./src
 yarn
-cd ../terraform
+cd ./terraform
 cp variables.tf.example variables.tf
 terraform init
 terraform apply
