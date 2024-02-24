@@ -20,15 +20,15 @@ module.exports = async () => {
   const minute = toNumber(now.minutes());
 
   let response = await getCoingecko({ path: '/coins/markets', vs_currency: CURRENCY, order: 'market_cap_desc', per_page: 250, price_change_percentage: TIMES.join(',') });
-  const market_caps = toArray(response).filter(d => !EXCLUDES.includes(d.id));
+  const market_caps = toArray(response).filter(d => d.id && !EXCLUDES.includes(d.id));
   await sleep(30 * 1000);
 
   response = await getCoingecko({ path: '/coins/markets', category: 'decentralized-finance-defi', vs_currency: CURRENCY, order: 'market_cap_desc', per_page: 250, price_change_percentage: TIMES.join(',') });
-  const defis = toArray(response).filter(d => !EXCLUDES.includes(d.id));
+  const defis = toArray(response).filter(d => d.id && !EXCLUDES.includes(d.id));
   await sleep(30 * 1000);
 
   response = await getCoingecko({ path: '/coins/markets', category: 'non-fungible-tokens-nft', vs_currency: CURRENCY, order: 'market_cap_desc', per_page: 250, price_change_percentage: TIMES.join(',') });
-  const nfts = toArray(response).filter(d => !EXCLUDES.includes(d.id));
+  const nfts = toArray(response).filter(d => d.id && !EXCLUDES.includes(d.id));
   await sleep(30 * 1000);
 
   response = await getCoingecko({ path: '/search/trending' });
