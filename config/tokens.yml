@@ -104,3 +104,7 @@ xezeth:
   redirect: "eth"
 xezETH:
   redirect: "xezeth"
+xgovt:
+  default_price: 1.0
+xGovT:
+  redirect: "xgovt"
