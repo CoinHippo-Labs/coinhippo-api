@@ -108,3 +108,5 @@ xgovt:
   default_price: 1.0
 xGovT:
   redirect: "xgovt"
+goat:
+  coingecko_id: "goated"
