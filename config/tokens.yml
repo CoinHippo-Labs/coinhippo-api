@@ -110,3 +110,5 @@ xGovT:
   redirect: "xgovt"
 goat:
   coingecko_id: "goated"
+insteth:
+  coingecko_id: "inception-restaked-steth"
