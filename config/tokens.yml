@@ -112,3 +112,5 @@ goat:
   coingecko_id: "goated"
 insteth:
   coingecko_id: "inception-restaked-steth"
+ezeth:
+  coingecko_id: "renzo-restaked-eth"
