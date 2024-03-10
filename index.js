@@ -22,10 +22,9 @@ exports.handler = async (event, context, callback) => {
   if (!method && !event.requestContext) {
     try {
       await METHODS.archive();
-      output = await METHODS.alerts();
-    } catch (error) {
-      output = parseError(error);
-    }
+      await METHODS.alerts();
+    } catch (error) {}
+    return;
   }
 
   // for calculate timeSpent
