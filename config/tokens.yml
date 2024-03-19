@@ -86,6 +86,20 @@ olit:
   default_price: 1.0
 sdai:
   coingecko_id: "savings-dai"
+inreth:
+  coingecko_id: "inception-restaked-reth"
+xezeth:
+  redirect: "eth"
+xezETH:
+  redirect: "xezeth"
+xGovT:
+  redirect: "xgovt"
+goat:
+  coingecko_id: "goated"
+insteth:
+  coingecko_id: "inception-restaked-steth"
+ezeth:
+  coingecko_id: "renzo-restaked-eth"
 test:
   is_stablecoin: true
   default_price: 1.0
@@ -98,19 +112,7 @@ gastly-lp-geth:
   default_price: 1.0
 esx:
   default_price: 1.0
-inreth:
-  coingecko_id: "inception-restaked-reth"
-xezeth:
-  redirect: "eth"
-xezETH:
-  redirect: "xezeth"
 xgovt:
   default_price: 1.0
-xGovT:
-  redirect: "xgovt"
-goat:
-  coingecko_id: "goated"
-insteth:
-  coingecko_id: "inception-restaked-steth"
-ezeth:
-  coingecko_id: "renzo-restaked-eth"
+axrty:
+  default_price: 1.0
