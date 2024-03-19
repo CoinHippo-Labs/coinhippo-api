@@ -100,6 +100,9 @@ insteth:
   coingecko_id: "inception-restaked-steth"
 ezeth:
   coingecko_id: "renzo-restaked-eth"
+eesee:
+  coingecko_id: "eesee"
+  default_price: 1.0
 test:
   is_stablecoin: true
   default_price: 1.0
