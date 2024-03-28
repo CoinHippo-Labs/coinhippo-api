@@ -97,8 +97,9 @@ module.exports = async () => {
 
   if (output.length > 0) {
     const id = 'listing';
-    let { latest } = { ...await get(CACHE_COLLECTION, id) };
-    output = _.slice(output.filter(d => d.exchange && d.url && d.url !== latest?.[d.exchange.id]), 0, 1);
+    const cache = await get(CACHE_COLLECTION, id);
+    let { latest } = { ...cache };
+    output = _.slice(output.filter(d => d.exchange && d.url && cache && d.url !== latest?.[d.exchange.id]), 0, 1);
 
     if (output.length > 0) {
       const twitter_messages = [];
