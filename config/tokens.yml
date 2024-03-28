@@ -103,6 +103,8 @@ ezeth:
 eesee:
   coingecko_id: "eesee"
   default_price: 1.0
+swpr:
+  coingecko_id: "swapr"
 test:
   is_stablecoin: true
   default_price: 1.0
