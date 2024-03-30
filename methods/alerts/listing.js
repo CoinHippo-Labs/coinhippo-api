@@ -4,7 +4,7 @@ const moment = require('moment');
 const { twitter, telegram } = require('../broadcasts');
 const { get, write } = require('../../services/index');
 const { CACHE_COLLECTION } = require('../../utils/config');
-const { request } = require('../utils/http');
+const { request } = require('../../utils/http');
 const { toArray } = require('../../utils/parser');
 const { timeDiff } = require('../../utils/time');
 
