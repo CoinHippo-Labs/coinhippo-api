@@ -4,6 +4,7 @@ exports.handler = async (event, context, callback) => {
   const METHODS = require('./methods');
   const { parseParams, parseError, finalizeResponse } = require('./utils/io');
   const { log } = require('./utils/logger');
+  const { version } = require('./package.json');
 
   // parse event to req
   const req = {
@@ -24,8 +25,9 @@ exports.handler = async (event, context, callback) => {
       await METHODS.archive();
       await METHODS.alerts();
     } catch (error) {}
-    return;
   }
+
+  if (!method) return { version, log_level: process.env.LOG_LEVEL };
 
   // for calculate timeSpent
   const startTime = moment();

@@ -1,48 +1,35 @@
 const _ = require('lodash');
-const moment = require('moment');
 
 const getNews = require('../getNews');
 const { telegram } = require('../broadcasts');
 const { get, write } = require('../../services/index');
 const { CACHE_COLLECTION } = require('../../utils/config');
 const { toArray } = require('../../utils/parser');
+const { timeDiff } = require('../../utils/time');
 
 const FILTERS = ['rising', 'hot', 'bullish', 'bearish', 'important', 'lol'];
 
 module.exports = async () => {
-  let alerted;
-  let output = [];
-
-  const now = moment();
+  let data = [];
   for (const filter of FILTERS) {
-    const response = await getNews({ filter, public: true, page: 1 });
-    output = _.orderBy(_.uniqBy(_.concat(output, toArray(response?.results).filter(d => d.id && d.title && d.url && d.source && now.diff(moment(d.created_at), 'hours') < 4)), 'id'), ['created_at'], ['desc']);
+    const { results } = { ...await getNews({ filter, public: true, page: 1 }) };
+    data = _.orderBy(_.uniqBy(_.concat(data, toArray(results).filter(d => d.id && d.title && d.url && d.source && timeDiff(d.created_at, 'hours') < 2)), 'id'), ['created_at'], ['desc']);
   }
 
-  if (output.length > 0) {
-    const id = 'news';
-    let { latest } = { ...await get(CACHE_COLLECTION, id) };
-    const index = output.findIndex(d => d.id.toString() === latest?.id);
-    if (index > -1) output = _.cloneDeep(_.slice(output, 0, index)).reverse();
-    output = _.slice(output, 0, 1);
+  if (!(data.length > 0)) return;
+  const cacheId = 'news';
+  let { latest } = { ...await get(CACHE_COLLECTION, cacheId) };
+  const index = data.findIndex(d => d.id.toString() === latest?.id);
+  if (index > -1) data = _.cloneDeep(_.slice(data, 0, index)).reverse();
+  data = _.slice(data, 0, 1);
 
-    if (output.length > 0) {
-      const telegram_messages = [];
-      output.forEach(d => {
-        const { id, title, slug, kind, domain, source } = { ...d };
-        let { url } = { ...d };
-        url = url.replace(slug, 'click/');
-        latest = { ...latest, id: id.toString() };
-        telegram_messages.push(`${kind === 'media' ? domain?.indexOf('youtube') > -1 ? '📺' : '🎙' : '📰'} ${title}\n<pre>via</pre> <a href="${url}">${source.title}</a>`);
-      });
-      await write(CACHE_COLLECTION, id, { latest });
-
-      if (telegram_messages.length > 0) {
-        await telegram(telegram_messages);
-        alerted = true;
-      }
-    }
-  }
-
-  return alerted;
+  if (!(data.length > 0)) return;
+  const messages = [];
+  data.forEach(d => {
+    latest = { ...latest, id: d.id.toString() };
+    messages.push(`${d.kind === 'media' ? d.domain?.indexOf('youtube') > -1 ? '📺' : '🎙' : '📰'} ${d.title}\n<pre>via</pre> <a href="${d.url.replace(slug, 'click/')}">${d.source.title}</a>`);
+  });
+  await write(CACHE_COLLECTION, cacheId, { latest });
+  await telegram(messages);
+  return true;
 };

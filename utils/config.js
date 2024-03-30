@@ -38,8 +38,8 @@ const getTokens = () => Object.entries({ ...tokens }).map(([k, v]) => ({ id: k, 
 const getToken = id => getTokens().find(d => ['id', 'coingecko_id'].findIndex(k => equalsIgnoreCase(d[k], id)) > -1);
 
 module.exports = {
-  CACHE_COLLECTION: 'caches',
   ASSET_COLLECTION: 'assets',
+  CACHE_COLLECTION: 'caches',
   CURRENCY: 'usd',
   getChains,
   getChainsList,
