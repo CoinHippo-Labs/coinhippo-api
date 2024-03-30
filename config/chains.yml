@@ -26,7 +26,6 @@ evm:
       block_path: "/block/{block}"
       address_path: "/address/{address}"
       contract_path: "/token/{address}"
-      contract_0_path: "/address/{address}"
       transaction_path: "/tx/{tx}"
   binance:
     chain_id: 56
@@ -55,7 +54,6 @@ evm:
       block_path: "/block/{block}"
       address_path: "/address/{address}"
       contract_path: "/token/{address}"
-      contract_0_path: "/address/{address}"
       transaction_path: "/tx/{tx}"
   polygon:
     chain_id: 137
@@ -82,7 +80,6 @@ evm:
       block_path: "/block/{block}"
       address_path: "/address/{address}"
       contract_path: "/token/{address}"
-      contract_0_path: "/address/{address}"
       transaction_path: "/tx/{tx}"
   arbitrum:
     chain_id: 42161
@@ -108,7 +105,6 @@ evm:
       block_path: "/block/{block}"
       address_path: "/address/{address}"
       contract_path: "/token/{address}"
-      contract_0_path: "/address/{address}"
       transaction_path: "/tx/{tx}"
   optimism:
     chain_id: 10
@@ -134,5 +130,4 @@ evm:
       block_path: "/block/{block}"
       address_path: "/address/{address}"
       contract_path: "/token/{address}"
-      contract_0_path: "/address/{address}"
       transaction_path: "/tx/{tx}"
