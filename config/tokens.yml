@@ -66,7 +66,7 @@ zoomer:
 radar:
   coingecko_id: "dappradar"
 p8:
-  default_price: 1.0
+  default_price: 0.01
 btrst:
   coingecko_id: "braintrust"
 xeure:
@@ -83,7 +83,7 @@ space:
   coingecko_id: "space-token-bsc"
 olit:
   coingecko_id: "olit"
-  default_price: 1.0
+  default_price: 0.01
 sdai:
   coingecko_id: "savings-dai"
 inreth:
@@ -102,9 +102,13 @@ ezeth:
   coingecko_id: "renzo-restaked-eth"
 eesee:
   coingecko_id: "eesee"
-  default_price: 1.0
+  default_price: 0.01
+arty:
+  coingecko_id: "artyfact"
 swpr:
   coingecko_id: "swapr"
+quid:
+  default_price: 0.01
 test:
   is_stablecoin: true
   default_price: 1.0
@@ -112,12 +116,10 @@ tkn:
   is_stablecoin: true
   default_price: 1.0
 workshoptoken:
-  default_price: 1.0
+  default_price: 0.01
 gastly-lp-geth:
-  default_price: 1.0
+  default_price: 0.01
 esx:
-  default_price: 1.0
+  default_price: 0.01
 xgovt:
-  default_price: 1.0
-axrty:
-  default_price: 1.0
+  default_price: 0.01
