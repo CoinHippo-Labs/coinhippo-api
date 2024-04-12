@@ -21,7 +21,7 @@ module.exports = async () => {
         try {
           const { articles } = { ...(await request('https://www.binance.com/bapi/composite/v1', { path: '/public/cms/article/all/query', params: { type: 1, pageNo: 1, pageSize: 10, sortBy: 2, apiVersion: 'V2', queryKeywords: 'list' } }))?.data };
           const { title, code, publishDate } = { ..._.head(_.orderBy(toArray(articles).filter(d => [48, 49].includes(d.catalogId)), ['publishDate'], ['desc'])) };
-          if (title && code && timeDiff(publishDate) < 300) data.push({ exchange, title: title.replaceAll('<em>', '').replaceAll('</em>', ''), url: `${exchange.url}/en/support/announcement/${code}` });
+          if (title && code && timeDiff(publishDate) < 3600) data.push({ exchange, title: title.replaceAll('<em>', '').replaceAll('</em>', ''), url: `${exchange.url}/en/support/announcement/${code}` });
         } catch (error) {}
         break;
       case 'okx':
