@@ -39,16 +39,18 @@ module.exports = async () => {
   if (!(data.length > 0)) return;
   const cacheId = 'listing';
   let { latest } = { ...await get(CACHE_COLLECTION, cacheId) };
-  data = _.slice(data.filter(d => d.exchange && d.url !== latest?.[d.exchange.id]), 0, 1);
+  data = _.slice(data.filter(d => latest && d.exchange && d.url !== latest[d.exchange.id]), 0, 1);
 
   if (!(data.length > 0)) return;
   const twitterMessages = [];
   const telegramMessages = [];
-  data.forEach((d, i) => {
+  let i = 0;
+  for (const d of data) {
     latest = { ...latest, [d.exchange.id]: d.url };
     twitterMessages.push(`${i === 0 ? `💎 ${d.exchange.title} ${d.exchange.event || 'Listing'}\n` : ''}\n${d.title}\n${d.url}\n\n#${d.exchange.title} #Cryptocurrency`);
     telegramMessages.push(`${i === 0 ? `💎 <b><pre>${d.exchange.title} ${d.exchange.event || 'Listing'}</pre></b>\n` : ''}${d.title}\n<pre>via</pre> <a href="${d.url}">${new URL(d.url).hostname}</a>`);
-  });
+    i++;
+  };
   await write(CACHE_COLLECTION, cacheId, { latest });
 
   await telegram(telegramMessages, true);
