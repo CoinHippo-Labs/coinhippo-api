@@ -17,6 +17,9 @@ const generateCacheId = params => {
 
 const getCoingecko = async params => {
   if (!params) return;
+  const { path } = { ...params };
+  delete params.path;
+
   let output;
   let cache;
   let cacheHit = false;
@@ -33,7 +36,7 @@ const getCoingecko = async params => {
       else await remove(CACHE_COLLECTION, id);
     }
   }
-  output = output || await coingecko(params.path, params);
+  output = output || await coingecko(path, params);
 
   if (output && !output.error) {
     if (id && !cacheHit) await write(CACHE_COLLECTION, id, { response: JSON.stringify(output), updated_at: moment().valueOf() });
