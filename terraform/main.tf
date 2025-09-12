@@ -47,7 +47,7 @@ resource "aws_iam_policy_attachment" "attachment" {
 
 resource "aws_opensearch_domain" "domain" {
   domain_name    = "${var.package_name}"
-  engine_version = "OpenSearch_2.11"
+  engine_version = "OpenSearch_2.19"
   cluster_config {
     instance_type            = "t3.small.search"
     instance_count           = 1
@@ -105,7 +105,7 @@ resource "aws_lambda_function" "function" {
   source_code_hash = data.archive_file.zip.output_base64sha256
   role             = aws_iam_role.role.arn
   handler          = "index.handler"
-  runtime          = "nodejs20.x"
+  runtime          = "nodejs22.x"
   timeout          = 300
   memory_size      = 256
   environment {
@@ -114,8 +114,6 @@ resource "aws_lambda_function" "function" {
       INDEXER_URL                 = "https://${aws_opensearch_domain.domain.endpoint}"
       INDEXER_USERNAME            = var.indexer_username
       INDEXER_PASSWORD            = var.indexer_password
-      NEWS_KEY                    = var.news_key
-      WHALE_ALERT_KEY             = var.whale_alert_key
       TWITTER_KEY                 = var.twitter_key
       TWITTER_SECRET              = var.twitter_secret
       TWITTER_ACCESS_TOKEN        = var.twitter_access_token

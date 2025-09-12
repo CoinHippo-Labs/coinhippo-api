@@ -1,9 +1,10 @@
-exports.handler = async (event, context, callback) => {
+exports.handler = async (event = {}, context, callback) => {
   const moment = require('moment');
 
   const METHODS = require('./methods');
   const { parseParams, parseError, finalizeResponse } = require('./utils/io');
-  const { log } = require('./utils/logger');
+  const { getLogLevel } = require('./utils/config');
+  const { toJson } = require('./utils/parser');
   const { version } = require('./package.json');
 
   // parse event to req
@@ -13,10 +14,11 @@ exports.handler = async (event, context, callback) => {
     headers: event.headers,
     params: { ...event.pathParameters },
     query: { ...event.queryStringParameters },
-    body: { ...(event.body && JSON.parse(event.body)) },
+    body: { ...toJson(event.body) },
   };
+
   // create params from req
-  const params = parseParams(req, 'api');
+  const params = parseParams(req);
   const { method } = { ...params };
 
   // when not triggered by API
@@ -27,10 +29,19 @@ exports.handler = async (event, context, callback) => {
     } catch (error) {}
   }
 
-  if (!method) return { version, log_level: process.env.LOG_LEVEL };
+  // without method (default)
+  if (!method) {
+    return {
+      version,
+      env: {
+        log_level: getLogLevel(),
+      },
+    };
+  }
 
-  // for calculate timeSpent
+  // for calculate time spent
   const startTime = moment();
+
   let response;
   switch (method) {
     default:
@@ -46,7 +57,5 @@ exports.handler = async (event, context, callback) => {
       break;
   }
 
-  response = finalizeResponse(response, params, startTime);
-  log('debug', 'api', 'send response', response);
-  return response;
+  return finalizeResponse(response, params, startTime);
 };

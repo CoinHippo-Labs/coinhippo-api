@@ -23,16 +23,6 @@ variable "indexer_password" {
   default     = ""
 }
 
-variable "news_key" {
-  description = "News API key"
-  default     = ""
-}
-
-variable "whale_alert_key" {
-  description = "Whale alert API key"
-  default     = ""
-}
-
 variable "twitter_key" {
   description = "Twitter API key"
   default     = ""
